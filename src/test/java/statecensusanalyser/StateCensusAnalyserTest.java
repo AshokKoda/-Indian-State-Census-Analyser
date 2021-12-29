@@ -2,6 +2,8 @@ package statecensusanalyser;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,12 +14,12 @@ public class StateCensusAnalyserTest {
 
 	@Test
     public void checkToEnsure_NumberOfRecordsMatches() throws CensusCsvException {
-        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCode.csv");
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCode.csv");
     }
 
     @Test
     public void givenWrongFileName_ShouldThrowNoSuchFileException() {
-        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCode12.csv");
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCode12.csv");
         try {
             int value = stateCensusAnalyser.readStateData(CSVStates.class,"");
             Assert.assertEquals(37, value);
@@ -30,7 +32,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenWrongFilePath_ShouldThrowRunTimeException() {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/gradlew.bat");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/");
             int checkNumberOfRecords = stateCensusAnalyser.readStateData(CSVStates.class,"");
         } catch (CensusCsvException e) {
             e.printStackTrace();
@@ -41,7 +43,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenCsvFile_ifFoundIncorrectDelimiterPosition_ShouldReturnException() {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/IncorrectStatecode.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/IncorrectStatecode.csv");
             int value = stateCensusAnalyser.readStateData(CSVStates.class,"");
             Assert.assertEquals(37, value);
         } catch (CensusCsvException e) {
@@ -53,7 +55,7 @@ public class StateCensusAnalyserTest {
     public void givenCsvFile_ifFoundNoHeader_ShouldReturnException() {
 
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCode.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCode.csv");
             int value = stateCensusAnalyser.readStateData(CSVStates.class,"");
             Assert.assertEquals(37, value);
         } catch (CensusCsvException e) {
@@ -63,7 +65,7 @@ public class StateCensusAnalyserTest {
 
     @Test
     public void givenCsvFile_CheckNumberOfRecodesMatchesOrNot_ForStatesCensus_ShouldReturnTrue() {
-        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCensusData.csv");
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCensusData.csv");
         int count = 0;
         try {
             count = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"");
@@ -75,7 +77,7 @@ public class StateCensusAnalyserTest {
 
     @Test
     public void givenCsvFile_ifFoundIncorrectName_OfStatesCensusFile_ShouldThrowException() throws IOException {
-        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCensusData.csv");
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCensusData.csv");
         try {
             int value = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"");
             Assert.assertEquals(29, value);
@@ -87,7 +89,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenWrongFilePath_ShouldThrowRunTimeException_ReturnFalse() {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/gradlew.bat");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/");
             int checkNumberOfRecords = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"");
         } catch (CensusCsvException e) {
             e.printStackTrace();
@@ -98,7 +100,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenCsvFile_ifFoundIncorrectDelimiterPositionInCSVStatusCensus_ShouldReturnException() throws IOException, CensusCsvException {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCensusData.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCensusData.csv");
             int value = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"");
             Assert.assertEquals(29, value);
         } catch (CensusCsvException e) {
@@ -109,7 +111,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenCsvFile_ifFoundNoHeaderInCSVStatusCensus_ShouldReturnException() {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCensusData.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCensusData.csv");
             int value = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"");
             Assert.assertEquals(29, value);
         } catch (CensusCsvException e) {
@@ -120,7 +122,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenCsvFile_ifSortBystateAlphabeticalOrder_ShouldReturnTrue() {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCensusData.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCensusData.csv");
             int value = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"stateAlphabeticalOrder");
             Assert.assertEquals(29, value);
         } catch (CensusCsvException e) {
@@ -131,7 +133,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenCsvFile_ifSortByMostPopulatedState_ShouldReturnTrue() {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCensusData.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCensusData.csv");
             int value = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"mostPopulatedState");
             Assert.assertEquals(29, value);
         } catch (CensusCsvException e) {
@@ -142,7 +144,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenCsvFile_ifSortByPopulationDensityState_ShouldReturnTrue() {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCensusData.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCensusData.csv");
             int value = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"populationDensityState");
             Assert.assertEquals(29, value);
         } catch (CensusCsvException e) {
@@ -153,7 +155,7 @@ public class StateCensusAnalyserTest {
     @Test
     public void givenCsvFile_ifSortByLargestStateArea_ShouldReturnTrue() {
         try {
-            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("/home/admin265/IdeaProjects/StateCensusAnalyserProblem/src/main/resources/StateCensusData.csv");
+            StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser("D:/Eclipse Java Projects/eclipse-workspace/Indian-State-Census-Analyser/StateCensusData.csv");
             int value = stateCensusAnalyser.readStateData(CSVStatesCensus.class,"largestStateArea");
             Assert.assertEquals(29, value);
         } catch (CensusCsvException e) {
